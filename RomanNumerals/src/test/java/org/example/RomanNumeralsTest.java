@@ -105,11 +105,23 @@ public class RomanNumeralsTest {
     }
 
     @Test
-    public void testNumeralToInt(){
+    public void testNumeralToInt1000(){
         RomanNumerals romanNumerals = new RomanNumerals();
         assertEquals(1000, romanNumerals.convertNumeralNumberTo("M"));
 
     }
 
+    @Test
+    public void testNumeralToInt4000(){
+        RomanNumerals romanNumerals = new RomanNumerals();
+        assertEquals(4000, romanNumerals.convertNumeralNumberTo("MMMM"));
+
+    }
+    @Test
+    public void testNumeralToInt9000(){
+        RomanNumerals romanNumerals = new RomanNumerals();
+        assertEquals(9000, romanNumerals.convertNumeralNumberTo("MMMMMMMMM"));
+
+    }
 
 }

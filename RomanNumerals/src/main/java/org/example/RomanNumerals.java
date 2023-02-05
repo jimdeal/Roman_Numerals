@@ -1,10 +1,30 @@
 package org.example;
 
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 public class RomanNumerals {
 
+    Set<String> HundredsNumerals = new HashSet<String>(Arrays.asList("D", "C"));
+
     public int convertNumeralNumberTo(String m) {
+        int returnNumber = 0;
+
+        for (char ch : m.toCharArray()) {
+            switch (ch){
+                case('M'):
+                    returnNumber += 1000;
+                    break;
+                default:
+                    // something wrong here ?
+                    break;
+            }
+
+
+        }
+
+        return returnNumber;
     }
 
     public enum numberSize{Hundreds, Tens, Units};

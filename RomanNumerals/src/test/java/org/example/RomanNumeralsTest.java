@@ -199,4 +199,16 @@ public class RomanNumeralsTest {
         assertEquals(9999, romanNumerals.convertNumeralNumberTo("MMMMMMMMMCMXCIX"));
     }
 
+    @Test
+    public void testNumeralToInt1(){
+        RomanNumerals romanNumerals = new RomanNumerals();
+        assertEquals(4567, romanNumerals.convertNumeralNumberTo("MMMMDLXVII"));
+    }
+
+    @Test
+    public void testNumeralToInt2(){
+        RomanNumerals romanNumerals = new RomanNumerals();
+        assertEquals(765, romanNumerals.convertNumeralNumberTo("DCCLXV"));
+    }
+
 }

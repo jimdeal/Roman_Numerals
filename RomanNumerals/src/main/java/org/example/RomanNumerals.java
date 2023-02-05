@@ -48,6 +48,7 @@ public class RomanNumerals {
                 case('V'):
                 case('I'):
                     currentWorkingSize = numberSize.Units;
+                    unitsString += ch;
                     break;
 
                 default:
@@ -60,6 +61,7 @@ public class RomanNumerals {
         returnNumber += (thousands * 1000);
         returnNumber += turnHundredNumeralsToInt(hundredsString);
         returnNumber += turnTenNumeralsToInt(tensString);
+        returnNumber += turnUnitNumeralsToInt(unitsString);
 
         return returnNumber;
     }
@@ -103,11 +105,29 @@ public class RomanNumerals {
                 // could be an M = do nothing
             }
         }
-
-
         return returnInt;
     }
 
+    public int turnUnitNumeralsToInt(String units) {
+        int returnInt = 0;
+        int numberOfNumerals = units.length();
+        for (int h = 0; h < numberOfNumerals; h++) {
+            if (units.charAt(h) == 'I') {
+                if ((h == 0) && (numberOfNumerals > 1)) {
+                    returnInt -= 1;
+                } else {
+                    returnInt += 1;
+                }
+            } else if (units.charAt(h) == 'V') {
+                returnInt += 5;
+            } else if (units.charAt(h) == 'X') {
+                returnInt += 10;
+            } else {
+                // could be an M = do nothing
+            }
+        }
+        return returnInt;
+    }
 
 
     public String convertToNumerals(numberSize numSize, int num){

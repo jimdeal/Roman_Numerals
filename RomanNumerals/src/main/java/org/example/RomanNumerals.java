@@ -36,12 +36,22 @@ public class RomanNumerals {
                 for (int start = 1; start <= num; start++) {
                     returnNumber += "X";
                 }
+            }else if(numSize == numberSize.Units) {
+                for (int start = 1; start <= num; start++) {
+                    returnNumber += "I";
+                }
+            } else{
+                // raise exception ?
             }
         } else if(num == 4) {
             if(numSize == numberSize.Hundreds) {
                 returnNumber += "CD";
             }else if(numSize == numberSize.Tens){
                 returnNumber += "XL";
+            }else if(numSize == numberSize.Units) {
+                returnNumber += "IV";
+            } else{
+                // raise exception ?
             }
         } else if((num >= 5) && (num <= 8)){
             if(numSize == numberSize.Hundreds){
@@ -54,12 +64,23 @@ public class RomanNumerals {
                 for(int start = 6; start <= num; start++){
                     returnNumber += "X";
                 }
+            }else if(numSize == numberSize.Units) {
+                returnNumber += "V";
+                for (int start = 6; start <= num; start++) {
+                    returnNumber += "I";
+                }
+            } else{
+                // raise exception ?
             }
         } else if(num==9){
             if(numSize == numberSize.Hundreds) {
                 returnNumber += "CM";
             }else if(numSize == numberSize.Tens){
                 returnNumber += "XC";
+            }else if(numSize == numberSize.Units) {
+                returnNumber += "IX";
+            } else{
+                // raise exception ?
             }
 
         } else{
@@ -100,6 +121,7 @@ public class RomanNumerals {
                     returnNumerals += addT;
                     break;
                 case 1:
+                    returnNumerals += convertToNumerals(RomanNumerals.numberSize.Units,i);
                     break;
                 default:
                     break;

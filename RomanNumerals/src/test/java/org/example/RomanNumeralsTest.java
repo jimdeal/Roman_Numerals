@@ -124,4 +124,29 @@ public class RomanNumeralsTest {
 
     }
 
+    @Test
+    public void testNumeralToInt1100(){
+        RomanNumerals romanNumerals = new RomanNumerals();
+        assertEquals(1100, romanNumerals.convertNumeralNumberTo("MC"));
+
+    }
+
+    @Test
+    public void testNumeralToInt4400(){
+        RomanNumerals romanNumerals = new RomanNumerals();
+        assertEquals(4400, romanNumerals.convertNumeralNumberTo("MMMMCD"));
+
+    }
+    @Test
+    public void testNumeralToInt4800(){
+        RomanNumerals romanNumerals = new RomanNumerals();
+        assertEquals(4800, romanNumerals.convertNumeralNumberTo("MMMMDCCC"));
+
+    }
+    @Test
+    public void testNumeralToInt9900(){
+        RomanNumerals romanNumerals = new RomanNumerals();
+        assertEquals(9900, romanNumerals.convertNumeralNumberTo("MMMMMMMMMCM"));
+    }
+
 }

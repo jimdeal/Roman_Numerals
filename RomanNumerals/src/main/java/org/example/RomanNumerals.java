@@ -10,11 +10,26 @@ public class RomanNumerals {
 
     public int convertNumeralNumberTo(String m) {
         int returnNumber = 0;
+        RomanNumerals.numberSize cuurentWorkingSize = numberSize.Thousands;
+        int thousands = 0;
+        String hundredsString = "";
+        String tensString = "";
+        String unitsString = "";
 
         for (char ch : m.toCharArray()) {
             switch (ch){
                 case('M'):
-                    returnNumber += 1000;
+                    if(cuurentWorkingSize == numberSize.Thousands)
+                    {
+                        thousands++;
+                    } else {
+                        hundredsString += ch; // ONLY time we should get here : 900
+                    }
+                    break;
+                case('D'):
+                case('C'):
+                    cuurentWorkingSize = numberSize.Hundreds;
+                    hundredsString += ch;
                     break;
                 default:
                     // something wrong here ?
@@ -23,11 +38,36 @@ public class RomanNumerals {
 
 
         }
+        returnNumber += (thousands * 1000);
+        returnNumber += turnHundredNumeralsToInt(hundredsString);
 
         return returnNumber;
     }
 
-    public enum numberSize{Hundreds, Tens, Units};
+    public int turnHundredNumeralsToInt(String hundreds){
+        int returnInt = 0;
+        int numberOfNumerals = hundreds.length();
+        for(int h = 0; h < numberOfNumerals; h++){
+            if(hundreds.charAt(h) == 'C'){
+                if((h==0)&&(numberOfNumerals>1)){
+                    returnInt -= 100;
+                } else {
+                    returnInt += 100;
+                }
+            } else if (hundreds.charAt(h)== 'D') {
+                returnInt += 500;
+            } else if (hundreds.charAt(h)== 'M') {
+                returnInt += 1000;
+            } else {
+                // could be an M = do nothing
+            }
+        }
+
+
+        return returnInt;
+    }
+
+    public enum numberSize{Thousands,Hundreds, Tens, Units};
 
     public String convertToNumerals(numberSize numSize, int num){
         String returnNumber = "";

@@ -22,6 +22,42 @@ public class RomanNumerals {
     public final String EIGHT_NUMERAL = "VIII";
     public final String NINE_NUMERAL = "IX";
 
+    public enum numberSize{Hundreds, Tens, Units};
+
+    public String convertToNumerals(numberSize numSize, int num){
+        String returnNumber = "";
+
+        if((num >= 0) && (num <= 3)){
+            if(numSize == numberSize.Hundreds) {
+                for (int start = 1; start <= num; start++) {
+                    returnNumber += "C";
+                }
+            }
+        } else if(num == 4) {
+            if(numSize == numberSize.Hundreds) {
+                returnNumber += "CD";
+            }
+        } else if((num >= 5) && (num <= 8)){
+            if(numSize == numberSize.Hundreds){
+                returnNumber += "D";
+                for(int start = 6; start <= num; start++){
+                    returnNumber += "C";
+                }
+
+            }
+        } else if(num==9){
+            if(numSize == numberSize.Hundreds) {
+                returnNumber += "CM";
+            }
+
+        } else{
+
+        }
+
+
+        return returnNumber;
+    }
+
     public String convert(int i) {
 
         String returnNumerals = new String();
@@ -40,6 +76,10 @@ public class RomanNumerals {
                     returnNumerals += addM;
                     break;
                 case 3:
+                    int hundred = (int)(i/100);
+                    i = i - (hundred * 100);
+                    String addH = convertToNumerals(RomanNumerals.numberSize.Hundreds,hundred);
+                    returnNumerals += addH;
                     break;
                 case 2:
                     break;

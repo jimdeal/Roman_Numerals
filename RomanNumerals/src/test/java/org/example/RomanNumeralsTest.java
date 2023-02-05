@@ -68,6 +68,29 @@ public class RomanNumeralsTest {
         assertEquals("MMMCMXC", romanNumerals.convert(3990));
     }
 
+    @Test
+    public void testIntTo1333(){
+        RomanNumerals romanNumerals = new RomanNumerals();
+        assertEquals("MCCCXXXIII", romanNumerals.convert(1333));
+    }
+    @Test
+    public void testIntTo4444(){
+        RomanNumerals romanNumerals = new RomanNumerals();
+        assertEquals("MMMMCDXLIV", romanNumerals.convert(4444));
+    }
+
+    @Test
+    public void testIntTo7888(){
+        RomanNumerals romanNumerals = new RomanNumerals();
+        assertEquals("MMMMMMMDCCCLXXXVIII", romanNumerals.convert(7888));
+    }
+
+    @Test
+    public void testIntTo3999(){
+        RomanNumerals romanNumerals = new RomanNumerals();
+        assertEquals("MMMCMXCIX", romanNumerals.convert(3999));
+    }
+
 /*
     @Test
     public void testIntToLessThan10_1(){

@@ -32,10 +32,16 @@ public class RomanNumerals {
                 for (int start = 1; start <= num; start++) {
                     returnNumber += "C";
                 }
+            } else if(numSize == numberSize.Tens){
+                for (int start = 1; start <= num; start++) {
+                    returnNumber += "X";
+                }
             }
         } else if(num == 4) {
             if(numSize == numberSize.Hundreds) {
                 returnNumber += "CD";
+            }else if(numSize == numberSize.Tens){
+                returnNumber += "XL";
             }
         } else if((num >= 5) && (num <= 8)){
             if(numSize == numberSize.Hundreds){
@@ -43,15 +49,21 @@ public class RomanNumerals {
                 for(int start = 6; start <= num; start++){
                     returnNumber += "C";
                 }
-
+            }else if(numSize == numberSize.Tens){
+                returnNumber += "L";
+                for(int start = 6; start <= num; start++){
+                    returnNumber += "X";
+                }
             }
         } else if(num==9){
             if(numSize == numberSize.Hundreds) {
                 returnNumber += "CM";
+            }else if(numSize == numberSize.Tens){
+                returnNumber += "XC";
             }
 
         } else{
-
+            // raise exception - shouldn't get here ?
         }
 
 
@@ -82,6 +94,10 @@ public class RomanNumerals {
                     returnNumerals += addH;
                     break;
                 case 2:
+                    int tens = (int)(i/10);
+                    i = i - (tens * 10);
+                    String addT = convertToNumerals(RomanNumerals.numberSize.Tens,tens);
+                    returnNumerals += addT;
                     break;
                 case 1:
                     break;

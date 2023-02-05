@@ -10,11 +10,13 @@ public class RomanNumeralsTest {
         RomanNumerals romanNumerals = new RomanNumerals();
         assertEquals("M", romanNumerals.convert(1000));
     }
+    @Test
     public void testIntTo4000(){
         RomanNumerals romanNumerals = new RomanNumerals();
         assertEquals("MMMM", romanNumerals.convert(4000));
     }
 
+    @Test
     public void testIntTo7000(){
         RomanNumerals romanNumerals = new RomanNumerals();
         assertEquals("MMMMMMM", romanNumerals.convert(7000));

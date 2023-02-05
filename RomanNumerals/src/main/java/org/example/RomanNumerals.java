@@ -24,23 +24,31 @@ public class RomanNumerals {
 
     public String convert(int i) {
 
-        int decimalSizeOfNumber =  i / TEN;
-        String returnNumerals = ";";
+        String returnNumerals = new String();
 
-        switch (decimalSizeOfNumber)
-        {
-            case 1:
-                System.out.println("one");
-                break;
-            case 0:
-                returnNumerals = convertLessThanTenToNumerals(i);
-                System.out.println(returnNumerals);
-                break;
-            default:
-                System.out.println("default");
-                break;
+        int numberSize = String.valueOf(i).length();
+
+        for(int numIt = numberSize; numIt > 0; numIt--){
+            switch(numIt){
+                case 4:
+                    int thousand = (int)(i/1000);
+                    i = i - (thousand * 1000);
+                    String addM = "";
+                    for(int m = 0; m<thousand;m++){
+                        addM += "M";
+                    }
+                    returnNumerals += addM;
+                    break;
+                case 3:
+                    break;
+                case 2:
+                    break;
+                case 1:
+                    break;
+                default:
+                    break;
+            }
         }
-
         return returnNumerals;
     }
 

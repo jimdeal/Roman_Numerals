@@ -7,10 +7,11 @@ import java.util.Set;
 public class RomanNumerals {
 
     Set<String> HundredsNumerals = new HashSet<String>(Arrays.asList("D", "C"));
+    public enum numberSize{Thousands,Hundreds, Tens, Units};
 
     public int convertNumeralNumberTo(String m) {
         int returnNumber = 0;
-        RomanNumerals.numberSize cuurentWorkingSize = numberSize.Thousands;
+        RomanNumerals.numberSize currentWorkingSize = numberSize.Thousands;
         int thousands = 0;
         String hundredsString = "";
         String tensString = "";
@@ -19,7 +20,7 @@ public class RomanNumerals {
         for (char ch : m.toCharArray()) {
             switch (ch){
                 case('M'):
-                    if(cuurentWorkingSize == numberSize.Thousands)
+                    if(currentWorkingSize == numberSize.Thousands)
                     {
                         thousands++;
                     } else {
@@ -28,9 +29,27 @@ public class RomanNumerals {
                     break;
                 case('D'):
                 case('C'):
-                    cuurentWorkingSize = numberSize.Hundreds;
-                    hundredsString += ch;
+                    if(currentWorkingSize != numberSize.Tens){
+                        currentWorkingSize = numberSize.Hundreds;
+                        hundredsString += ch;
+                    } else {
+                        tensString += ch;
+                    }
                     break;
+                case('X'):
+                case('L'):
+                    if(currentWorkingSize != numberSize.Units) {
+                        currentWorkingSize = numberSize.Tens;
+                        tensString += ch;
+                    } else {
+                        unitsString += ch;
+                    }
+                    break;
+                case('V'):
+                case('I'):
+                    currentWorkingSize = numberSize.Units;
+                    break;
+
                 default:
                     // something wrong here ?
                     break;
@@ -40,6 +59,7 @@ public class RomanNumerals {
         }
         returnNumber += (thousands * 1000);
         returnNumber += turnHundredNumeralsToInt(hundredsString);
+        returnNumber += turnTenNumeralsToInt(tensString);
 
         return returnNumber;
     }
@@ -62,12 +82,33 @@ public class RomanNumerals {
                 // could be an M = do nothing
             }
         }
+        return returnInt;
+    }
+
+    public int turnTenNumeralsToInt(String tens){
+        int returnInt = 0;
+        int numberOfNumerals = tens.length();
+        for(int h = 0; h < numberOfNumerals; h++){
+            if(tens.charAt(h) == 'X'){
+                if((h==0)&&(numberOfNumerals>1)){
+                    returnInt -= 10;
+                } else {
+                    returnInt += 10;
+                }
+            } else if (tens.charAt(h)== 'L') {
+                returnInt += 50;
+            } else if (tens.charAt(h)== 'C') {
+                returnInt += 100;
+            } else {
+                // could be an M = do nothing
+            }
+        }
 
 
         return returnInt;
     }
 
-    public enum numberSize{Thousands,Hundreds, Tens, Units};
+
 
     public String convertToNumerals(numberSize numSize, int num){
         String returnNumber = "";

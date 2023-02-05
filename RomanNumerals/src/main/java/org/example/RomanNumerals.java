@@ -71,7 +71,7 @@ public class RomanNumerals {
         return returnNumber;
     }
 
-    public String convert(int i) {
+    public String convertNumberToNumeral(int i) {
 
         String returnNumerals = new String();
 

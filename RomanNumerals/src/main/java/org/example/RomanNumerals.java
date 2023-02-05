@@ -1,6 +1,11 @@
 package org.example;
 
+import java.util.Arrays;
+
 public class RomanNumerals {
+
+    public int convertNumeralNumberTo(String m) {
+    }
 
     public enum numberSize{Hundreds, Tens, Units};
 

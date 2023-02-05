@@ -104,4 +104,12 @@ public class RomanNumeralsTest {
         assertEquals("MMMMCCCXXI", romanNumerals.convertNumberToNumeral(4321 ));
     }
 
+    @Test
+    public void testNumeralToInt(){
+        RomanNumerals romanNumerals = new RomanNumerals();
+        assertEquals(1000, romanNumerals.convertNumeralNumberTo("M"));
+
+    }
+
+
 }
